@@ -11,8 +11,7 @@ Vector3 operator-(const Vector3 &lhs, const Vector3 &rhs)
   return { lhs.values[0] - rhs.values[0], lhs.values[1] - rhs.values[1], lhs.values[2] - rhs.values[2] };
 }
 
-template <typename U>
-Vector3 operator*(const U& lhs, const Vector3& rhs)
+Vector3 operator*(const double &lhs, const Vector3 &rhs)
 {
   return { lhs * rhs.values[0], lhs * rhs.values[1], lhs * rhs.values[2] };
 }
@@ -27,20 +26,23 @@ bool operator!=(const Vector3 &lhs, const Vector3 &rhs)
   return lhs.values[0] != rhs.values[0] || lhs.values[1] != rhs.values[1] || lhs.values[2] != rhs.values[2];
 }
 
-double magnitude(const Vector3& v)
+const double Vector3::magnitude()
 {
-  return sqrt(v.values[0] * v.values[0] + v.values[1] * v.values[1] + v.values[2] * v.values[2]);
+  return sqrt(this->values[0] * this->values[0] + this->values[1] * this->values[1] + this->values[2] * this->values[2]);
 }
 
-double sqr_magnitude(const Vector3& v)
+const double Vector3::sqr_magnitude()
 {
-  return v.values[0] * v.values[0] + v.values[1] * v.values[1] + v.values[2] * v.values[2];
+  return this->values[0] * this->values[0] + this->values[1] * this->values[1] + this->values[2] * this->values[2];
 }
 
-Vector3 normalize(Vector3 &v)
+Vector3 Vector3::normalize()
 {
-  v = (1 / magnitude(v)) * v;
-  return v;
+  double magnitude = this->magnitude();
+  this->values[0] /= magnitude;
+  this->values[1] /= magnitude;
+  this->values[2] /= magnitude;
+  return *this;
 }
 
 double dot(const Vector3 &lhs, const Vector3 &rhs)

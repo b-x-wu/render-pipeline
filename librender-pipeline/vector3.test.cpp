@@ -47,7 +47,7 @@ void test_operator_inequivalent() {
 
 void test_magnitude() {
   Vector3 v = { 12.0, 15.0, 16.0 };
-  double actual = magnitude(v);
+  double actual = v.magnitude();
   double expected = 25.0;
 
   assert(actual == expected);
@@ -55,7 +55,7 @@ void test_magnitude() {
 
 void test_sqr_magnitude() {
   Vector3 v = { 2.0, 3.0, 4.0 };
-  double actual = sqr_magnitude(v);
+  double actual = v.sqr_magnitude();
   double expected = 29.0;
 
   assert(actual == expected);
@@ -63,7 +63,7 @@ void test_sqr_magnitude() {
 
 void test_normalize() {
   Vector3 v = { 1.0, 2.0, 2.0 };
-  Vector3 actual = normalize(v);
+  Vector3 actual = v.normalize();
   Vector3 expected = { 1.0 / 3.0, 2.0 / 3.0, 2.0 / 3.0 };
 
   assert(actual == expected);
