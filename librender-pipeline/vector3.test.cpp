@@ -1,10 +1,10 @@
 #include "vector3.hpp"
-#include <iostream>
 #include <assert.h>
 
 // TODO: create a test suite class
 
-void test_operator_plus() {
+void test_operator_plus()
+{
   Vector3 lhs = { 1.0, 2.0, 3.0 };
   Vector3 rhs = { 2.0, 3.0, 4.0 };
   Vector3 actual = lhs + rhs;
@@ -13,7 +13,8 @@ void test_operator_plus() {
   assert(actual == expected);
 }
 
-void test_operator_minus() {
+void test_operator_minus()
+{
   Vector3 lhs = { 1.0, 2.0, 3.0 };
   Vector3 rhs = { 2.0, 3.0, 4.0 };
   Vector3 actual = lhs - rhs;
@@ -22,7 +23,8 @@ void test_operator_minus() {
   assert(actual == expected);
 }
 
-void test_operator_times() {
+void test_operator_times()
+{
   double lhs = 2.0;
   Vector3 rhs = { 1.0, 2.0, 3.0 };
   Vector3 actual = lhs * rhs;
@@ -31,21 +33,24 @@ void test_operator_times() {
   assert(actual == expected);
 }
 
-void test_operator_equivalent() {
+void test_operator_equivalent()
+{
   Vector3 lhs = { 1.0, 2.0, 3.0 };
   Vector3 rhs = { 1.0, 2.0, 3.0 };
 
   assert(lhs == rhs);
 }
 
-void test_operator_inequivalent() {
+void test_operator_inequivalent()
+{
   Vector3 lhs = { 1.0, 2.0, 3.0 };
   Vector3 rhs = { 2.0, 2.0, 3.0 };
 
   assert(lhs != rhs);
 }
 
-void test_magnitude() {
+void test_magnitude()
+{
   Vector3 v = { 12.0, 15.0, 16.0 };
   double actual = v.magnitude();
   double expected = 25.0;
@@ -53,7 +58,8 @@ void test_magnitude() {
   assert(actual == expected);
 }
 
-void test_sqr_magnitude() {
+void test_sqr_magnitude()
+{
   Vector3 v = { 2.0, 3.0, 4.0 };
   double actual = v.sqr_magnitude();
   double expected = 29.0;
@@ -61,7 +67,8 @@ void test_sqr_magnitude() {
   assert(actual == expected);
 }
 
-void test_normalize() {
+void test_normalize()
+{
   Vector3 v = { 1.0, 2.0, 2.0 };
   Vector3 actual = v.normalize();
   Vector3 expected = { 1.0 / 3.0, 2.0 / 3.0, 2.0 / 3.0 };
@@ -70,7 +77,8 @@ void test_normalize() {
   assert(v == expected);
 }
 
-void test_dot() {
+void test_dot()
+{
   Vector3 lhs = { 1.0, 2.0, 3.0 };
   Vector3 rhs = { 4.0, -5.0, 6.0 };
   double actual = dot(lhs, rhs);
@@ -79,7 +87,8 @@ void test_dot() {
   assert(actual == expected);
 }
 
-void test_cross() {
+void test_cross()
+{
   Vector3 lhs = { 3.0, -3.0, 1.0 };
   Vector3 rhs = { 4.0, 9.0, 2.0 };
   Vector3 actual = cross(lhs, rhs);
@@ -88,7 +97,8 @@ void test_cross() {
   assert(actual == expected);
 }
 
-void test_componentwise_get() {
+void test_componentwise_get()
+{
   Vector3 v = { 1.0, 2.0, 3.0 };
 
   assert(v.get_x() == 1.0);
@@ -96,7 +106,8 @@ void test_componentwise_get() {
   assert(v.get_z() == 3.0);
 }
 
-int main() {
+int main()
+{
   test_operator_plus();
   test_operator_minus();
   test_operator_times();
