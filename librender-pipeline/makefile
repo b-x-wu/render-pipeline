@@ -1,5 +1,6 @@
 COMPILER = g++
 
+# TODO: move the math stuff to its own library/module/something
 
 vector3-test: vector3.cpp vector3.test.cpp
 	@${COMPILER} -c vector3.cpp vector3.test.cpp
