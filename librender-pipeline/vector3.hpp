@@ -3,22 +3,24 @@
 
 struct Vector3 {
   double values[3];
-  const double get_x()
+  double get_x() const
   {
     return values[0];
   }
-  const double get_y()
+  double get_y() const
   {
     return values[1];
   }
-  const double get_z()
+  double get_z() const
   {
     return values[2];
   }
-  const double magnitude();
-  const double sqr_magnitude();
+  double magnitude() const;
+  double sqr_magnitude() const;
   Vector3 normalize();
 };
+
+Vector3 operator-(const Vector3 &v);
 
 Vector3 operator+(const Vector3 &lhs, const Vector3 &rhs);
 

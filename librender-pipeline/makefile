@@ -23,7 +23,14 @@ transform-test: transform.cpp transform.test.cpp
 		echo All Transform tests passed.; \
 	fi
 
-test: -vector3-test -hvector-test -transform-test clean
+camera-test: camera.cpp camera.test.cpp
+	@${COMPILER} -c camera.cpp camera.test.cpp
+	@${COMPILER} vector3.o hvector.o transform.o camera.o camera.test.o -o camera-test.out
+	@if ./camera-test.out; then \
+		echo All Camera tests passed.; \
+	fi
+
+test: -vector3-test -hvector-test -transform-test -camera-test clean
 
 clean:
 	@rm -f *.out *.o

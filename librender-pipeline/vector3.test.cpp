@@ -13,6 +13,15 @@ void test_operator_plus()
   assert(actual == expected);
 }
 
+void test_operator_negative()
+{
+  Vector3 v = { 1.0, 2.0, 3.0 };
+  Vector3 actual = -v;
+  Vector3 expected = { -1.0, -2.0, -3.0 };
+
+  assert(actual == expected);
+}
+
 void test_operator_minus()
 {
   Vector3 lhs = { 1.0, 2.0, 3.0 };
@@ -110,6 +119,7 @@ int main()
 {
   test_operator_plus();
   test_operator_minus();
+  test_operator_negative();
   test_operator_times();
   test_operator_equivalent();
   test_operator_inequivalent();

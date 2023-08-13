@@ -1,6 +1,11 @@
 #include "vector3.hpp"
 #include <math.h>
 
+Vector3 operator-(const Vector3 &v)
+{
+  return { -v.values[0], -v.values[1], -v.values[2] };
+}
+
 Vector3 operator+(const Vector3 &lhs, const Vector3 &rhs)
 {
   return { lhs.values[0] + rhs.values[0], lhs.values[1] + rhs.values[1], lhs.values[2] + rhs.values[2] };
@@ -26,12 +31,12 @@ bool operator!=(const Vector3 &lhs, const Vector3 &rhs)
   return lhs.values[0] != rhs.values[0] || lhs.values[1] != rhs.values[1] || lhs.values[2] != rhs.values[2];
 }
 
-const double Vector3::magnitude()
+double Vector3::magnitude() const
 {
   return sqrt(this->values[0] * this->values[0] + this->values[1] * this->values[1] + this->values[2] * this->values[2]);
 }
 
-const double Vector3::sqr_magnitude()
+double Vector3::sqr_magnitude() const
 {
   return this->values[0] * this->values[0] + this->values[1] * this->values[1] + this->values[2] * this->values[2];
 }
