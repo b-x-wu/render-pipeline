@@ -5,7 +5,9 @@
 
 enum PRIMITIVE_TYPE
 {
-  POINT, LINE, TRIANGLE
+  POINT = 1,
+  LINE = 2,
+  TRIANGLE = 3,
 };
 
 struct Primitive

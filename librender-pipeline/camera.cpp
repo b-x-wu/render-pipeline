@@ -2,7 +2,7 @@
 
 #include "camera.hpp"
 
-void Camera::set_eye_position(Vector3 &eye_position)
+void Camera::set_eye_position(Point &eye_position)
 {
   this->_eye_position = eye_position;
   this->_update_camera_transform();
@@ -51,6 +51,7 @@ void OrthogonalCamera::set_x_bounds(double left, double right)
   this->_left = left;
   this->_right = right;
   this->_update_projection_transform();
+  this->_update_view_volume_bounds();
 }
 
 void OrthogonalCamera::set_y_bounds(double bottom, double top)
@@ -59,6 +60,7 @@ void OrthogonalCamera::set_y_bounds(double bottom, double top)
   this->_bottom = bottom;
   this->_top = top;
   this->_update_projection_transform();
+  this->_update_view_volume_bounds();
 }
 
 void OrthogonalCamera::set_z_bounds(double near, double far)
@@ -67,6 +69,7 @@ void OrthogonalCamera::set_z_bounds(double near, double far)
   this->_near = near;
   this->_far = far;
   this->_update_projection_transform();
+  this->_update_view_volume_bounds();
 }
 
 void OrthogonalCamera::_update_projection_transform()
@@ -78,4 +81,34 @@ void OrthogonalCamera::_update_projection_transform()
     { 0, 0, 0, 1 },
   };
   this->projection_transform = Transform(projection_transform_values);
+}
+
+void OrthogonalCamera::_update_view_volume_bounds()
+{
+  const Vector3 left_top_near_point = { this->_left, this->_top, this->_near };
+  const Vector3 right_bottom_far_point = { this->_right, this->_bottom, this->_far };
+
+  // left plane
+  this->view_volume_bounds[0].normal = { -1, 0, 0 };
+  this->view_volume_bounds[0].offset = -(dot(this->view_volume_bounds[0].normal, left_top_near_point));
+
+  // right plane
+  this->view_volume_bounds[1].normal = { 1, 0, 0 };
+  this->view_volume_bounds[1].offset = -(dot(this->view_volume_bounds[1].normal, right_bottom_far_point));
+  
+  // top plane
+  this->view_volume_bounds[2].normal = { 0, 1, 0 };
+  this->view_volume_bounds[2].offset = -(dot(this->view_volume_bounds[2].normal, left_top_near_point));
+
+  // bottom plane
+  this->view_volume_bounds[3].normal = { 0, -1, 0 };
+  this->view_volume_bounds[3].offset = -(dot(this->view_volume_bounds[3].normal, right_bottom_far_point));
+
+  // near plane
+  this->view_volume_bounds[4].normal = { 0, 0, 1 };
+  this->view_volume_bounds[4].offset = -(dot(this->view_volume_bounds[4].normal, left_top_near_point));
+
+  // far plane
+  this->view_volume_bounds[5].normal = { 0, 0, -1 };
+  this->view_volume_bounds[5].offset = -(dot(this->view_volume_bounds[5].normal, right_bottom_far_point));
 }
