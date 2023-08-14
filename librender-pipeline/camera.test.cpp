@@ -75,7 +75,6 @@ void test_update_orthogonal_view_volume_bounds()
   camera.set_y_bounds(-10, 10);
   camera.set_z_bounds(-10, -20);
 
-  // expect points inside lrtbnf to be inside the view volume bounds + inverse
   Vector3 inside_point = { 0, 0, -15 };
   assert(dot(camera.view_volume_bounds[0].normal, inside_point) + camera.view_volume_bounds[0].offset < 0);
   assert(dot(camera.view_volume_bounds[1].normal, inside_point) + camera.view_volume_bounds[1].offset < 0);

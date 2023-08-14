@@ -9,6 +9,13 @@ vector3-test: vector3.cpp vector3.test.cpp
 		echo All Vector3 tests passed.; \
 	fi
 
+color-test: color.hpp color.test.cpp
+	@${COMPILER} -c color.test.cpp
+	@${COMPILER} color.test.o -o color-test.out
+	@if ./color-test.out; then \
+		echo All Color tests passed.; \
+	fi
+
 hvector-test: hvector.cpp hvector.test.cpp
 	@${COMPILER} -c hvector.cpp hvector.test.cpp
 	@${COMPILER} vector3.o hvector.o hvector.test.o -o hvector-test.out
@@ -30,7 +37,7 @@ camera-test: camera.cpp camera.test.cpp
 		echo All Camera tests passed.; \
 	fi
 
-test: -vector3-test -hvector-test -transform-test -camera-test clean
+test: -vector3-test -color-test -hvector-test -transform-test -camera-test clean
 
 clean:
 	@rm -f *.out *.o
