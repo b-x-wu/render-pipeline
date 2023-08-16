@@ -3,10 +3,11 @@
 
 #include "vector3.hpp"
 #include "color.hpp"
+#include "geometry.hpp"
 
 struct Vertex
 {
-  Vector3 position; // in world space
+  Point position; // in world space
   Color color;
   Vector3 normal;
 };

@@ -15,7 +15,7 @@ void test_componentwise_get()
 void test_get_normalized_vector3()
 {
   HVector v = { 2.0, 4.0, 6.0, 2.0 };
-  Vector3 actual = v.get_normalized_vector3();
+  Vector3 actual = v.to_vector3();
   Vector3 expected = { 1.0, 2.0, 3.0 };
 
   assert(actual == expected);
@@ -47,7 +47,7 @@ void test_normalize_divide_by_zero_exception()
 
   try
   {
-    v.get_normalized_vector3();
+    v.to_vector3();
   }
   catch(const std::runtime_error& e)
   {

@@ -2,7 +2,7 @@
 #include "vector3.hpp"
 #include <stdexcept>
 
-const Vector3 HVector::get_normalized_vector3()
+Vector3 HVector::to_vector3()
 {
   if (this->values[3] == 0)
   {

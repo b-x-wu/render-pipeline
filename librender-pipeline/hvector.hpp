@@ -21,7 +21,7 @@ struct HVector {
   {
     return values[3];
   }
-  const Vector3 get_normalized_vector3();
+  Vector3 to_vector3();
   HVector normalize();
   static HVector from_vector3(Vector3 &v);
 };
