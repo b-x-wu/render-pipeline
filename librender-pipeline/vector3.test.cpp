@@ -50,6 +50,24 @@ void test_operator_equivalent()
   assert(lhs == rhs);
 }
 
+void test_operator_less_than()
+{
+  Vector3 lhs, rhs;
+
+  lhs = { 1.0, 2.0, 3.0 };
+  rhs = { 2.0, 2.0, 3.0 };
+  assert(lhs < rhs);
+  assert(!(rhs < lhs));
+
+  rhs = { 1.0, 1.0, 3.0 };  
+  assert(rhs < lhs);
+  assert(!(lhs < rhs));
+
+  rhs = { 1.0, 2.0, 2.0 };
+  assert(rhs < lhs);
+  assert(!(lhs < rhs));
+}
+
 void test_operator_inequivalent()
 {
   Vector3 lhs = { 1.0, 2.0, 3.0 };
@@ -122,6 +140,7 @@ int main()
   test_operator_negative();
   test_operator_times();
   test_operator_equivalent();
+  test_operator_less_than();
   test_operator_inequivalent();
   test_magnitude();
   test_sqr_magnitude();

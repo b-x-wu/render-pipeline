@@ -27,7 +27,7 @@ inline bool is_bounded(Point p, Plane* bounding_planes, int bound_count)
 
 inline bool is_bounded(Point p, Plane bounding_plane)
 {
-  return dot(bounding_plane.normal, p) + bounding_plane.offset < 0;
+  return dot(bounding_plane.normal, p) + bounding_plane.offset <= 0;
 }
 
 #endif

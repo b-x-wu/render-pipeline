@@ -10,13 +10,13 @@ void Camera::set_eye_position(Point &eye_position)
 
 void Camera::set_gaze_direction(Vector3 &gaze_direction)
 {
-  this->_gaze_direction = gaze_direction;
+  this->_gaze_direction = gaze_direction.normalize();
   this->_update_camera_transform();
 }
 
 void Camera::set_view_up_direction(Vector3 &view_up_direction)
 {
-  this->_view_up_direction = view_up_direction;
+  this->_view_up_direction = view_up_direction.normalize();
   this->_update_camera_transform();
 }
 
@@ -45,7 +45,7 @@ void Camera::_update_camera_transform()
   this->camera_transform = rotation_transform * translation_transform;
 }
 
-void OrthogonalCamera::set_x_bounds(double left, double right)
+void OrthographicCamera::set_x_bounds(double left, double right)
 {
   assert(left < right);
   this->_left = left;
@@ -54,7 +54,7 @@ void OrthogonalCamera::set_x_bounds(double left, double right)
   this->_update_view_volume_bounds();
 }
 
-void OrthogonalCamera::set_y_bounds(double bottom, double top)
+void OrthographicCamera::set_y_bounds(double bottom, double top)
 {
   assert(bottom < top);
   this->_bottom = bottom;
@@ -63,7 +63,7 @@ void OrthogonalCamera::set_y_bounds(double bottom, double top)
   this->_update_view_volume_bounds();
 }
 
-void OrthogonalCamera::set_z_bounds(double near, double far)
+void OrthographicCamera::set_z_bounds(double near, double far)
 {
   assert(near > far);
   this->_near = near;
@@ -72,7 +72,7 @@ void OrthogonalCamera::set_z_bounds(double near, double far)
   this->_update_view_volume_bounds();
 }
 
-void OrthogonalCamera::_update_projection_transform()
+void OrthographicCamera::_update_projection_transform()
 {
   double projection_transform_values[4][4] = {
     { 2 / (this->_right - this->_left), 0, 0, -(this->_right + this->_left) / (this->_right - this->_left) },
@@ -83,7 +83,7 @@ void OrthogonalCamera::_update_projection_transform()
   this->projection_transform = Transform(projection_transform_values);
 }
 
-void OrthogonalCamera::_update_view_volume_bounds()
+void OrthographicCamera::_update_view_volume_bounds()
 {
   const Vector3 left_top_near_point = { this->_left, this->_top, this->_near };
   const Vector3 right_bottom_far_point = { this->_right, this->_bottom, this->_far };

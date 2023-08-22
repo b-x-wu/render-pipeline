@@ -35,7 +35,7 @@ void test_update_camera_transform()
 
 void test_update_orthogonal_projection_transform()
 {
-  OrthogonalCamera camera = OrthogonalCamera();
+  OrthographicCamera camera = OrthographicCamera();
 
   camera.set_x_bounds(-10, 10);
   camera.set_y_bounds(-10, 10);
@@ -69,7 +69,7 @@ void test_update_orthogonal_projection_transform()
 
 void test_update_orthogonal_view_volume_bounds()
 {
-  OrthogonalCamera camera = OrthogonalCamera();
+  OrthographicCamera camera = OrthographicCamera();
 
   camera.set_x_bounds(-10, 10);
   camera.set_y_bounds(-10, 10);

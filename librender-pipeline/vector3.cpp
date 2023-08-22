@@ -31,6 +31,29 @@ bool operator!=(const Vector3 &lhs, const Vector3 &rhs)
   return lhs.values[0] != rhs.values[0] || lhs.values[1] != rhs.values[1] || lhs.values[2] != rhs.values[2];
 }
 
+bool operator<(const Vector3 &lhs, const Vector3 &rhs) // lexigraphical ordering by x, y, z component
+{
+  if (lhs.get_x() < rhs.get_x())
+  {
+    return true;
+  }
+  if (lhs.get_x() > rhs.get_x())
+  {
+    return false;
+  }
+
+  if (lhs.get_y() < rhs.get_y())
+  {
+    return true;
+  }
+  if (lhs.get_y() > rhs.get_y())
+  {
+    return false;
+  }
+
+  return lhs.get_z() < rhs.get_z();
+}
+
 double Vector3::magnitude() const
 {
   return sqrt(this->values[0] * this->values[0] + this->values[1] * this->values[1] + this->values[2] * this->values[2]);

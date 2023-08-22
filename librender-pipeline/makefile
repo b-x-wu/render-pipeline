@@ -30,14 +30,28 @@ transform-test: transform.cpp transform.test.cpp
 		echo All Transform tests passed.; \
 	fi
 
+primitive-test: primitive.cpp primitive.test.cpp
+	@${COMPILER} -c primitive.cpp primitive.test.cpp
+	@${COMPILER} vector3.o hvector.o primitive.o primitive.test.o -o primitive-test.out
+	@if ./primitive-test.out; then \
+		echo All Primitive tests passed.; \
+	fi
+
 camera-test: camera.cpp camera.test.cpp
 	@${COMPILER} -c camera.cpp camera.test.cpp
-	@${COMPILER} vector3.o hvector.o transform.o camera.o camera.test.o -o camera-test.out
+	@${COMPILER} vector3.o hvector.o transform.o primitive.o camera.o camera.test.o -o camera-test.out
 	@if ./camera-test.out; then \
 		echo All Camera tests passed.; \
 	fi
 
-test: -vector3-test -color-test -hvector-test -transform-test -camera-test clean
+vertex-shader-test: vertex-shader.cpp vertex-shader.test.cpp
+	@${COMPILER} -c vertex-shader.cpp vertex-shader.test.cpp
+	@${COMPILER} vector3.o hvector.o transform.o primitive.o camera.o vertex-shader.o vertex-shader.test.o -o vertex-shader-test.out
+	@if ./vertex-shader-test.out; then \
+		echo All VertexShader tests passed.; \
+	fi
+
+test: -vector3-test -color-test -hvector-test -transform-test -primitive-test -camera-test -vertex-shader-test clean
 
 clean:
 	@rm -f *.out *.o

@@ -23,7 +23,7 @@ public:
   void set_view_up_direction(Vector3 &view_up_direction);
 };
 
-class OrthogonalCamera : public Camera
+class OrthographicCamera : public Camera
 {
   double _left, _right, _bottom, _top, _near, _far;
 
