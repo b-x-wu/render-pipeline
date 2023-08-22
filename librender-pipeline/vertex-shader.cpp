@@ -250,14 +250,22 @@ std::deque<Primitive> VertexShader::clip_to_view_volume(std::deque<Primitive> &p
 
 std::deque<Primitive> VertexShader::transform_to_screen_space(std::deque<Primitive> &primitives) const
 {
-  Transform camera_space_to_view_space = this->_viewport_transform * this->_camera->projection_transform;
-  for (Primitive primitive : primitives)
+  int primitives_count = primitives.size();
+  Transform camera_space_to_screen_space = this->_viewport_transform * this->_camera->projection_transform;
+
+  for (int i = 0; i < primitives_count; i++)
   {
+    Primitive primitive = primitives.front();
+    primitives.pop_front();
+
     for (int point_idx = 0; point_idx < primitive.type; point_idx++)
     {
-      primitive.vertices[point_idx].position = (this->_viewport_transform * HVector::from_vector3(primitive.vertices[point_idx].position)).to_vector3();
+      primitive.vertices[point_idx].position = (camera_space_to_screen_space * HVector::from_vector3(primitive.vertices[point_idx].position)).to_vector3();
     }
+    
+    primitives.push_back(primitive);
   }
+
   return primitives;
 }
 
